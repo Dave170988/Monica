@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <style>
+    /* Add some basic styling to the dashboard */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 40px);
+    }
+    .widget {
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 10px;
+      text-align: center;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Dashboard</h1>
+  </div>
+  <div class="container">
+    <div class="widget" id="userWidget">
+      <h2>User</h2>
+      <p id="userName"></p>
+    </div>
+  </div>
+
+  <script>
+    // Fetch the logged-in user's name from the server
+    fetch('get_user.php')
+      .then(response => response.json())
+      .then(data => {
+        const userName = document.getElementById('userName');
+        userName.textContent = data.username;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  </script>
+</body>
+</html>
